@@ -1,5 +1,5 @@
 
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
     const Employee = sequelize.define("Employee",{
         emp_no:{
             type: DataTypes.INTEGER,
@@ -10,17 +10,19 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.DATE,
         },
         first_name:{
-            type: DataTypes.VARCHAR,
+            type: DataTypes.TEXT,
         },
         last_name:{
-            type: DataTypes.VARCHAR,
+            type: DataTypes.TEXT,
         },
         gender:{
-            type: DataTypes.ENUM,
+            type: DataTypes.CHAR,
         },
         hire_date:{
             type: DataTypes.DATE,
         },
+    },{
+        timestamps: false
     });
     return Employee;
 };

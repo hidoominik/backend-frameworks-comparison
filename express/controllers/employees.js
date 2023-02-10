@@ -1,9 +1,10 @@
-import Employee from '../models/employee.js';
-import db from '../models/index.js';
+// import Employee from '../models/employee.js';
+// import db from '../models/index.js';
+const db = require('../models');
 
-export const getEmployees = async(req, res) => {
+module.exports = getEmployees = async(req, res) => {
     try {
-        let employees = await Employee.findAll({});
+        let employees = await db.Employee.findAll();
         // res.json({message: 'Success'});
         res.status(200).json(employees);
     } catch (error) {
