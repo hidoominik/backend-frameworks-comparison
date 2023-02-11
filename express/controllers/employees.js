@@ -32,8 +32,7 @@ module.exports = {
         }
         res.status(400).json({message: 'Incorrect range!'});
     } catch (error) {
-        res.status(404).json({message: error.message});
-        console.log(error.message)
+      
     }
 
 }
