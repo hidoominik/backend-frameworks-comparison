@@ -10,4 +10,5 @@ router.get('/fetchInRange/:idFrom/:idTo', employees.getEmployeesInRange);
 router.get('/:id', employees.getOne);
 router.post('/create', employees.createOne);
 router.delete('/delete/:id', employees.deleteOne);
+router.put('/:id', employees.editOne);
 module.exports = router;

@@ -105,5 +105,29 @@ module.exports = {
        }
     },
 
+    editOne: editOne = async(req, res) => {
+        const {id: id} = req.params;
+        const newEmployeeData = req.body;
+
+        try {
+            const employee = await db.Employee.findByPk(id);
+            if(!employee){
+                res.status(404).json({message: 'User not found!'});
+            }else{
+                await db.Employee.update( 
+                    newEmployeeData,
+                    {
+                        where:{
+                            emp_no: id,
+                        }
+                    }
+                );
+                const updatedEmployee = await getOne(req, res);
+                res.status(200).json(updatedEmployee);
+            }
+        } catch (error) {
+            res.status(400).json({message: error.message});
+        }
+    }
     
 }
