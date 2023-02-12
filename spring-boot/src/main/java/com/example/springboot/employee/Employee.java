@@ -1,14 +1,13 @@
 package com.example.springboot.employee;
 
 import com.example.springboot.salary.Salary;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,12 +20,12 @@ import java.util.Set;
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_no")
     private int id;
 
     @Column(name = "birth_date", nullable = false)
-    private LocalDateTime birthDate;
+    private LocalDate birthDate;
 
     @Column(name = "first_name", nullable = false, length = 14)
     private String firstName;
@@ -39,7 +38,7 @@ public class Employee {
     private Gender gender;
 
     @Column(name = "hire_date", nullable = false)
-    private LocalDateTime hireDate;
+    private LocalDate hireDate;
 
 //    @JsonIgnore
     @OneToMany(mappedBy="employee", cascade = CascadeType.ALL)

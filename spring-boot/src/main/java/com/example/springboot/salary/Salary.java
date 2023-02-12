@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,13 +21,13 @@ public class Salary {
 
     @Id
     @Column(name = "from_date", length = 4)
-    private LocalDateTime fromDate;
+    private LocalDate fromDate;
 
     @Column(name = "salary")
     private int salary;
 
     @Column(name = "to_date")
-    private LocalDateTime toDate;
+    private LocalDate toDate;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)

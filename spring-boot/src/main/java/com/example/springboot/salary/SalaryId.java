@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,5 +21,5 @@ public class SalaryId implements Serializable {
     @JoinColumn(name = "emp_no")
     private Employee employee;
 
-    private LocalDateTime fromDate;
+    private LocalDate fromDate;
 }
