@@ -46,7 +46,10 @@ module.exports = {
         const {id: id} = req.params;
         try {
             const employee = await db.Employee.findByPk(id, {
-                include: [db.Salary]
+                include: [{
+                    model:db.Salary,
+                    attributes:['to_date','from_date','salary']
+                }]
             });
             if(!employee){
                 res.status(404).json({message: 'User not found!'});
