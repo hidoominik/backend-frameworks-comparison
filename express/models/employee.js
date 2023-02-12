@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
     Employee.associate = (models) => {
         Employee.hasMany(models.Salary, {
             foreignKey: 'emp_no',
+            onDelete:'CASCADE'
         })
     }
 
