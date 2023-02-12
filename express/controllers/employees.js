@@ -20,20 +20,43 @@ module.exports = {
         if(idFrom < idTo){
             const employeeFrom = await db.Employee.findByPk(idFrom);
             const employeeTo = await db.Employee.findByPk(idTo);
-            if(!employeeFrom || !employeeTo) res.status(404).json({message: 'Incorrect range!'});
-            console.log(idFrom);
-            console.log(idTo);
-            const range = (start, stop) => Array.from({ length: stop - start + 1 }, (_, i) => start + i);
-            console.log(range(idFrom, idTo));
-            const employees = await db.Employee.findAll({
-                where:{emp_no: range(parseInt(idFrom), parseInt(idTo))}
-            })
-            res.status(200).json(employees);
+            if(!employeeFrom || !employeeTo){
+               res.status(404).json({message: 'Incorrect range!'}); 
+            } else {
+                const range = (start, stop) => Array.from({ length: stop - start + 1 }, (_, i) => start + i);
+                console.log(range(idFrom, idTo));
+                const employees = await db.Employee.findAll({
+                    where:{emp_no: range(parseInt(idFrom), parseInt(idTo))}
+                })
+                res.status(200).json(employees);
+            }
+           
+            
+        }else{
+            res.status(400).json({message: 'Incorrect range!'});
         }
-        res.status(400).json({message: 'Incorrect range!'});
+        
     } catch (error) {
-      
+        res.status(404).json({message: error.message});
+        console.log(error.message)
     }
 
-}
+},
+    getOne: getOne = async(req,res)=>{
+        const {id: id} = req.params;
+        try {
+            const employee = await db.Employee.findByPk(id, {
+                include: [db.Salary]
+            });
+            if(!employee){
+                res.status(404).json({message: 'User not found!'});
+            }else{
+                 res.status(200).json(employee);
+            }
+
+           
+        } catch (error) {
+            res.status(400).json({message: error.message});
+        }
+    }
 }

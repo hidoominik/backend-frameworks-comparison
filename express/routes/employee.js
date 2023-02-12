@@ -7,4 +7,6 @@ const router = express.Router();
 
 router.get('/fetchAll', employees.getEmployees);
 router.get('/fetchInRange/:idFrom/:idTo', employees.getEmployeesInRange);
+router.get('/:id', employees.getOne);
+
 module.exports = router;

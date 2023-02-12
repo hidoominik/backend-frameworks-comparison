@@ -1,4 +1,6 @@
 
+const models = require('./');
+
 module.exports = (sequelize, DataTypes) => {
     const Employee = sequelize.define("Employee",{
         emp_no:{
@@ -24,5 +26,12 @@ module.exports = (sequelize, DataTypes) => {
     },{
         timestamps: false
     });
+
+    Employee.associate = (models) => {
+        Employee.hasMany(models.Salary, {
+            foreignKey: 'emp_no',
+        })
+    }
+
     return Employee;
 };
