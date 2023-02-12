@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
         },
         from_date:{
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             primaryKey: true
         },
         to_date:{
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
         }
     },{
         timestamps: false

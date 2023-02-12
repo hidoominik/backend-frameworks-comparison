@@ -61,5 +61,49 @@ module.exports = {
         } catch (error) {
             res.status(400).json({message: error.message});
         }
-    }
+    },
+
+    createOne: createOne = async(req, res) =>{
+        const newEmployeeData = req.body;
+        try {
+            const employee = await db.Employee.create({
+                emp_no: newEmployeeData.emp_no,
+                first_name: newEmployeeData.first_name,
+                last_name: newEmployeeData.last_name,
+                gender: newEmployeeData.gender,
+                hire_date: newEmployeeData.hire_date,
+                birth_date: newEmployeeData.hire_date,
+                Salaries: []
+            }, 
+            {
+                include: [{
+                    model:db.Salary,
+                    attributes:['to_date','from_date','salary']
+                }]
+        });
+            
+            res.status(200).json(employee);
+        } catch (error) {
+            res.status(400).json({message: error.message});
+        }
+    },
+
+    deleteOne: deleteOne = async(req, res) => {
+       const {id: id} = req.params;
+       try {
+            const employee = await db.Employee.findByPk(id);
+            if(!employee){
+                res.status(404).json({message: 'User not found!'});
+            }else{
+                const deletedEmployee = await db.Employee.destroy({where:{
+                    emp_no: id,
+                }});
+                res.status(200).json({message: 'Successfully deleted!'});
+            }
+       } catch (error) {
+            res.status(400).json({message: error.message});
+       }
+    },
+
+    
 }

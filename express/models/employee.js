@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true
         },
         birth_date:{
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
         },
         first_name:{
             type: DataTypes.TEXT,
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.CHAR,
         },
         hire_date:{
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
         },
     },{
         timestamps: false
