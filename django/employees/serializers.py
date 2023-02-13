@@ -13,6 +13,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'gender',
                   'hire_date')
 
+
 class SalarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Salary

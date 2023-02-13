@@ -25,15 +25,12 @@ def employee_detail(request, pk):
     # find employee by pk (id)
     try:
         employee = Employee.objects.get(pk=pk)
-    except Employee.DoesNotExist:
-        return JsonResponse({'message': 'The employee does not exist'}, status=status.HTTP_404_NOT_FOUND)
-
         if request.method == 'GET':
-            employee_serializer = EmployeeSerializer(tutorial)
+            employee_serializer = EmployeeSerializer(employee)
             return JsonResponse(employee_serializer.data)
         elif request.method == 'PUT':
             employee_data = JSONParser().parse(request)
-            employee_serializer = EmployeeSerializer(tutorial, data=employee_data)
+            employee_serializer = EmployeeSerializer(employee, data=employee_data)
             if employee_serializer.is_valid():
                 employee_serializer.save()
                 return JsonResponse(employee_serializer.data)
@@ -41,3 +38,5 @@ def employee_detail(request, pk):
         elif request.method == 'DELETE':
             employee.delete()
             return JsonResponse({'message': 'Employee was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+    except Employee.DoesNotExist:
+        return JsonResponse({'message': 'The employee does not exist'}, status=status.HTTP_404_NOT_FOUND)

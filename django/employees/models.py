@@ -1,7 +1,8 @@
 from django.db import models
 
+
 class Employee(models.Model):
-    emp_no = models.IntegerField(primary_key=True)
+    emp_no = models.IntegerField(primary_key=True, db_column='emp_no')
     birth_date = models.DateField()
     first_name = models.CharField(max_length=14)
     last_name = models.CharField(max_length=16)
@@ -12,8 +13,9 @@ class Employee(models.Model):
         managed = False
         db_table = 'employees'
 
+
 class Salary(models.Model):
-    emp_no = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='salaries')
+    emp_no = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='salaries', db_column='emp_no')
     salary = models.IntegerField()
     from_date = models.DateField()
     to_date = models.DateField()
