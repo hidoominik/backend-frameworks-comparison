@@ -3,7 +3,17 @@ from employees.models import Employee
 from employees.models import Salary
 
 
+class SalarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Salary
+        fields = ('salary',
+                  'from_date',
+                  'to_date')
+
+
 class EmployeeSerializer(serializers.ModelSerializer):
+    salaries = SalarySerializer(many=True, read_only=True)
+
     class Meta:
         model = Employee
         fields = ('emp_no',
@@ -11,13 +21,5 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'first_name',
                   'last_name',
                   'gender',
-                  'hire_date')
-
-
-class SalarySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Salary
-        fields = ('emp_no',
-                  'salary',
-                  'from_date',
-                  'to_date')
+                  'hire_date',
+                  'salaries')

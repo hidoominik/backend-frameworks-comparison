@@ -5,7 +5,9 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 
 from employees.models import Employee
+from employees.models import Salary
 from employees.serializers import EmployeeSerializer
+from employees.serializers import SalarySerializer
 from rest_framework.decorators import api_view
 
 
@@ -22,7 +24,6 @@ def employee_body(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def employee_detail(request, pk):
-    # find employee by pk (id)
     try:
         employee = Employee.objects.get(pk=pk)
         if request.method == 'GET':
