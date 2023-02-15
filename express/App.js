@@ -1,6 +1,7 @@
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 const express = require('express');
+const compression = require('compression');
 const employeeRoutes = require('./routes/employee.js');
 
 if (cluster.isMaster) {
@@ -20,8 +21,9 @@ if (cluster.isMaster) {
   const PORT = 8080;
 
   app.use(express.json());
+  app.use(compression());
   app.use('/employee', employeeRoutes);
-    
+
   // Start server
   app.listen(PORT, () => {
     console.log(`Worker ${process.pid} started. Server is running on port ${PORT}`);
