@@ -1,6 +1,3 @@
-// import express from 'express';
-// import employeeRoutes from './routes/employee.js'
-
 const express = require('express');
 const employeeRoutes = require('./routes/employee.js')
 
@@ -11,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-// app.use(cors());
+
 app.use('/employee', employeeRoutes)
 
 app.listen(PORT, () => {
