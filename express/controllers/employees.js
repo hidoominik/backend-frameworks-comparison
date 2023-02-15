@@ -15,6 +15,7 @@ module.exports = {
         const {id: id} = req.params;
         try {
             const employee = await db.Employee.findByPk(id, {
+                logging: false,
                 include: [{
                     model:db.Salary,
                     attributes:['to_date','from_date','salary']
@@ -43,7 +44,8 @@ module.exports = {
                 birth_date: newEmployeeData.hire_date,
                 Salaries: []
             }, 
-            {
+            {   
+                logging: false,
                 include: [{
                     model:db.Salary,
                     attributes:['to_date','from_date','salary']
@@ -63,7 +65,7 @@ module.exports = {
             if(!employee){
                 res.status(404).json({message: 'User not found!'});
             }else{
-                const deletedEmployee = await db.Employee.destroy({where:{
+                const deletedEmployee = await db.Employee.destroy({logging: false, where:{
                     emp_no: id,
                 }});
                 res.status(200).json({message: 'Successfully deleted!'});
@@ -84,7 +86,8 @@ module.exports = {
             }else{
                 await db.Employee.update( 
                     newEmployeeData,
-                    {
+                    {   
+                        logging: false,
                         where:{
                             emp_no: id,
                         }
