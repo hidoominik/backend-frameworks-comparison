@@ -38,6 +38,6 @@ def employee_detail(request, pk):
             return JsonResponse(employee_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         elif request.method == 'DELETE':
             employee.delete()
-            return JsonResponse({'message': 'Employee was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+            return JsonResponse({'message': 'Employee was deleted successfully!'}, status=status.HTTP_200_OK)
     except Employee.DoesNotExist:
         return JsonResponse({'message': 'The employee does not exist'}, status=status.HTTP_404_NOT_FOUND)
