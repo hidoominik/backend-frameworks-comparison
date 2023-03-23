@@ -25,20 +25,20 @@ public class Employee {
     private int id;
 
     @Column(name = "birth_date", nullable = false)
-    private LocalDate birthDate;
+    private LocalDate birth_date;
 
     @Column(name = "first_name", nullable = false, length = 14)
-    private String firstName;
+    private String first_name;
 
     @Column(name = "last_name", nullable = false, length = 16)
-    private String lastName;
+    private String last_name;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
 
     @Column(name = "hire_date", nullable = false)
-    private LocalDate hireDate;
+    private LocalDate hire_date;
 
 //    @JsonIgnore
     @OneToMany(mappedBy="employee", cascade = CascadeType.ALL)

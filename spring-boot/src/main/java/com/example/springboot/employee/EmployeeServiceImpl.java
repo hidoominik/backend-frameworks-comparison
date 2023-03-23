@@ -24,11 +24,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee updateOne(Employee updatedEmployee, Employee employeeUpdatedData) {
-        updatedEmployee.setBirthDate(employeeUpdatedData.getBirthDate());
-        updatedEmployee.setFirstName(employeeUpdatedData.getFirstName());
-        updatedEmployee.setLastName(employeeUpdatedData.getLastName());
+        updatedEmployee.setBirth_date(employeeUpdatedData.getBirth_date());
+        updatedEmployee.setFirst_name(employeeUpdatedData.getFirst_name());
+        updatedEmployee.setLast_name(employeeUpdatedData.getLast_name());
         updatedEmployee.setGender(employeeUpdatedData.getGender());
-        updatedEmployee.setHireDate(employeeUpdatedData.getHireDate());
+        updatedEmployee.setHire_date(employeeUpdatedData.getHire_date());
 
         return employeeRepository.save(updatedEmployee);
     }
