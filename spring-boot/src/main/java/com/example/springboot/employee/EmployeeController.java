@@ -22,21 +22,21 @@ public class EmployeeController {
     @GetMapping("/employee/{id}")
     public ResponseEntity<?> get(@PathVariable int id) {
 
-        return ResponseEntity.ok(employeeService.getOneById(id).orElseThrow(RuntimeException::new));
+        return ResponseEntity.ok(employeeService.getOneById(id).orElseThrow(EmployeeNotFoundException::new));
     }
 
     @PutMapping("/employee/{id}")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody Employee employeeUpdatedData) {
 
         return ResponseEntity.ok(employeeService.updateOne(
-                employeeService.getOneById(id).orElseThrow(RuntimeException::new),
+                employeeService.getOneById(id).orElseThrow(EmployeeNotFoundException::new),
                 employeeUpdatedData));
     }
 
     @Transactional
     @DeleteMapping("/employee/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
-        employeeService.deleteOne(employeeService.getOneById(id).orElseThrow(RuntimeException::new));
+        employeeService.deleteOne(employeeService.getOneById(id).orElseThrow(EmployeeNotFoundException::new));
 
         return ResponseEntity.ok("Employee data was successfully deleted!");
     }
